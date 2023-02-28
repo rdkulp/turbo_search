@@ -1,0 +1,8 @@
+<h1>Pokemon</h1>
+
+<%= form_tag do %>
+  <%= label_tag(:search, "What Pokemon would you like to catch?") %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag("SEARCH", :name => nil) %>
+<% end %>
+
