@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    @pokemon = Search.get(params[:search])
+    @pokemon = Search.get(params[:query])
   end
 
   def show
@@ -8,6 +8,6 @@ class SearchController < ApplicationController
 
   private
     def search_params
-      params.require(:search).permit(:name, :id, :search)
+      params.require(:search).permit(:name, :id, :query)
     end
 end

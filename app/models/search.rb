@@ -1,7 +1,11 @@
 require 'poke-api-v2'
 
 class Search < ApplicationRecord
-  def self.get(pokemon)
-    pokemon.is_a?(String) ? PokeApi.get(pokemon: pokemon) : PokeApi.get(pokedex: pokemon)  
+  def self.get(query)
+    if query.is_a?(String) && !query.nil?
+      PokeApi.get(pokemon: query)
+    elsif query.is_a?(Integer) && !query.nil?
+      PokeApi.get(pokedex: query)
+    end
   end 
 end

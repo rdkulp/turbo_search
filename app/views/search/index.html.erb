@@ -1,8 +1,13 @@
 <h1>Pokemon</h1>
 
-<%= form_tag do %>
-  <%= label_tag(:search, "What Pokemon would you like to catch?") %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag("SEARCH", :name => nil) %>
+<%= form_with url: "/search", method: :get do |form| %>
+  <%= form.label :query, "What Pokemon would you like to catch?" %>
+  <%= form.text_field :query %>
+  <%= form.submit %>
 <% end %>
 
+<% if !params.nil? && !@pokemon.nil? %>
+  <% JSON.parse(@pokemon.to_json).dig("sprites").to_a.each do |pokemon_image| %>
+     <img src="<%=pokemon_image[1]%>" >
+  <% end %>
+<% end %>
